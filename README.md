@@ -1,7 +1,5 @@
 
-# global ai hub - python bootcamp
-
-# pizza_siparis_sistemi
+# Global AI Hub - Python Bootcamp Projesi - Pizza Siparis Sistemi
 
 # Giris Sayfasi
 ![1](https://user-images.githubusercontent.com/63148309/224479351-c5d637d7-72a5-4a9e-a48e-431eaefaec14.png)
