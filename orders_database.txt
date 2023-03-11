@@ -1,1 +1,0 @@
-İsim soyisim, Kart no, Sifre, TC kimlik no, Siparis aciklaması, Siparisin zamani
