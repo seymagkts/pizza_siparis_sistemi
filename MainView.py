@@ -791,7 +791,7 @@ def main(page: ft.Page):
         width=415,
         content=ft.Image(
             src=il.entry_png, ),
-        on_hover=lambda _: page.go("/MainView"),
+        on_hover=lambda _: page.go("/MainView"), # açılan ilk ekranla mouse ile üzerine gelindiğinde anasayfaya yönlendir
     )
 
     def ekran_degisim(route):
