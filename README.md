@@ -1,6 +1,9 @@
 
 # Global AI Hub - Python Bootcamp Projesi - Pizza Siparis Sistemi
 
+# Uygulamanin calisir haldeki videosu 
+https://drive.google.com/file/d/1wxyZ1mSSqw1Nzpv-SY2LgyIpthpgeMYH/view?usp=share_link
+
 # Giris Sayfasi
 ![1](https://user-images.githubusercontent.com/63148309/224479351-c5d637d7-72a5-4a9e-a48e-431eaefaec14.png)
 
