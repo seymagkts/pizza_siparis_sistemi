@@ -1,5 +1,7 @@
 import flet as ft
 import time
+
+import flet.flet
 import img_link as il
 import pizza_system as ps
 
@@ -7,19 +9,12 @@ classicPizza = ps.classic_pizza()
 sadePizza = ps.sade_pizza()
 turkPizza = ps.turkish_pizza()
 margaritaPizza = ps.margarita()
-malz_zeytin = ps.zeytin()
-malz_misir = ps.misir()
-malz_et = ps.et()
-malz_sogan = ps.sogan()
-malz_peynir = ps.peynir()
-malz_mantar = ps.mantar()
 
 
 def main(page: ft.Page):
     page.window_width = 415
     page.window_height = 825
     page.title = "Turkish Pizza Hub"
-
     renk = "0xFFF2F2F2"
     renk_border = "0xFFF2F2F2"
     # tıklanmaların kontrolü
@@ -33,7 +28,8 @@ def main(page: ft.Page):
     tiklama_sogan = ft.TextField(value="0")
     tiklama_peynir = ft.TextField(value="0")
     tiklama_mantar = ft.TextField(value="0")
-    secilen = ft.TextField(value=" ")
+    secilen = ft.TextField(value=" ") # secilen pizza 
+    aciklama = ft.TextField(value=" ") # siparis aciklamasi
     # tıklama, fiyat ve fiyat_tutar'ının flet yardımıyla erişimi ve işleme alınması için yapılan tanımlamalar.
     fiyat_tutar = ft.TextField(value="0")
     fiyat_metni = "Sepet tutarı {} TL".format(fiyat_tutar.value)
@@ -69,7 +65,8 @@ def main(page: ft.Page):
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)  #
                 # seçili pizza için konteyner border kırmızı olsun
                 konteyner_klasik.border.bottom.color = "0xFFFF0000"
-                secilen.value = classicPizza.get_description()
+                secilen.value = classicPizza
+                aciklama.value = classicPizza.get_description()
             fiyat.update()
             konteyner_klasik.update()
 
@@ -104,7 +101,8 @@ def main(page: ft.Page):
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)  #
                 # seçili pizza için konteyner border kırmızı olsun
                 konteyner_sade.border.bottom.color = "0xFFFF0000"
-                secilen.value = sadePizza.get_description()
+                secilen.value = sadePizza
+                aciklama.value = sadePizza.get_description()
             fiyat.update()
             konteyner_sade.update()
 
@@ -140,7 +138,8 @@ def main(page: ft.Page):
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)  #
                 # seçili pizza için konteyner border kırmızı olsun
                 konteyner_margarita.border.bottom.color = "0xFFFF0000"
-                secilen.value = margaritaPizza.get_description()
+                secilen.value = margaritaPizza
+                aciklama.value = margaritaPizza.get_description()
             fiyat.update()
             konteyner_margarita.update()
 
@@ -175,7 +174,8 @@ def main(page: ft.Page):
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)  #
                 # seçili pizza için konteyner border kırmızı olsun
                 konteyner_turk.border.bottom.color = "0xFFFF0000"
-                secilen.value = turkPizza.get_description()
+                secilen.value = turkPizza
+                aciklama.value = turkPizza.get_description()
             fiyat.update()
             konteyner_turk.update()
 
@@ -183,6 +183,7 @@ def main(page: ft.Page):
 
     # -------------------------- ZEYTİN --------------------------
     def malzeme_secim_zeytin(e):
+        malz_zeytin = ps.zeytin(secilen.value)
         # herhangi bir pizza seçildiyse eğer o zaman malzeme seçimine izin verecek olan kod bloğu:
         if (int(tiklama0.value) % 2 == 1 or
                 int(tiklama1.value) % 2 == 1 or
@@ -200,14 +201,18 @@ def main(page: ft.Page):
                 # tıklanmış
                 fiyat_tutar.value = int(fiyat_tutar.value) + malz_zeytin.get_cost()
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)
+                aciklama.value += ", " + malz_zeytin.desc
                 konteyner_zeytin.border.bottom.color = "0xFFFF0000"
                 konteyner_zeytin.update()
                 fiyat.update()
+
+
         else:
             pass
 
     # -------------------------- MISIR --------------------------
     def malzeme_secim_misir(e):
+        malz_misir = ps.misir(secilen.value)
         # herhangi bir pizza seçildiyse eğer o zaman malzeme seçimine izin verecek olan kod bloğu:
         if (int(tiklama0.value) % 2 == 1 or
                 int(tiklama1.value) % 2 == 1 or
@@ -225,6 +230,7 @@ def main(page: ft.Page):
                 # tıklanmış
                 fiyat_tutar.value = int(fiyat_tutar.value) + malz_misir.get_cost()
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)
+                aciklama.value +=  ", " + malz_misir.desc
                 konteyner_misir.border.bottom.color = "0xFFFF0000"
                 konteyner_misir.update()
                 fiyat.update()
@@ -233,6 +239,7 @@ def main(page: ft.Page):
 
     # -------------------------- ET --------------------------
     def malzeme_secim_et(e):
+        malz_et = ps.et(secilen.value)
         # herhangi bir pizza seçildiyse eğer o zaman malzeme seçimine izin verecek olan kod bloğu:
         if (int(tiklama0.value) % 2 == 1 or
                 int(tiklama1.value) % 2 == 1 or
@@ -250,6 +257,7 @@ def main(page: ft.Page):
                 # tıklanmış
                 fiyat_tutar.value = int(fiyat_tutar.value) + malz_et.get_cost()
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)
+                aciklama.value +=  ", " + malz_et.desc
                 konteyner_et.border.bottom.color = "0xFFFF0000"
                 konteyner_et.update()
                 fiyat.update()
@@ -258,6 +266,7 @@ def main(page: ft.Page):
 
     # -------------------------- SOĞAN --------------------------
     def malzeme_secim_sogan(e):
+        malz_sogan = ps.sogan(secilen.value)
         # herhangi bir pizza seçildiyse eğer o zaman malzeme seçimine izin verecek olan kod bloğu:
         if (int(tiklama0.value) % 2 == 1 or
                 int(tiklama1.value) % 2 == 1 or
@@ -275,6 +284,7 @@ def main(page: ft.Page):
                 # tıklanmış
                 fiyat_tutar.value = int(fiyat_tutar.value) + malz_sogan.get_cost()
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)
+                aciklama.value +=  ", " + malz_sogan.desc
                 konteyner_sogan.border.bottom.color = "0xFFFF0000"
                 konteyner_sogan.update()
                 fiyat.update()
@@ -283,6 +293,7 @@ def main(page: ft.Page):
 
     # -------------------------- PEYNİR --------------------------
     def malzeme_secim_peynir(e):
+        malz_peynir = ps.peynir(secilen.value)
         # herhangi bir pizza seçildiyse eğer o zaman malzeme seçimine izin verecek olan kod bloğu:
         if (int(tiklama0.value) % 2 == 1 or
                 int(tiklama1.value) % 2 == 1 or
@@ -300,6 +311,7 @@ def main(page: ft.Page):
                 # tıklanmış
                 fiyat_tutar.value = int(fiyat_tutar.value) + malz_peynir.get_cost()
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)
+                aciklama.value +=  ", " + malz_peynir.desc
                 konteyner_peynir.border.bottom.color = "0xFFFF0000"
                 konteyner_peynir.update()
                 fiyat.update()
@@ -308,6 +320,7 @@ def main(page: ft.Page):
 
     # -------------------------- MANTAR --------------------------
     def malzeme_secim_mantar(e):
+        malz_mantar = ps.mantar(secilen.value)
         # herhangi bir pizza seçildiyse eğer o zaman malzeme seçimine izin verecek olan kod bloğu:
         if (int(tiklama0.value) % 2 == 1 or
                 int(tiklama1.value) % 2 == 1 or
@@ -323,8 +336,10 @@ def main(page: ft.Page):
                 fiyat.update()
             else:
                 # tıklanmış
+                malz_mantar = ps.mantar(secilen.value)
                 fiyat_tutar.value = int(fiyat_tutar.value) + malz_mantar.get_cost()
                 fiyat.value = "Sepet tutarı {} TL".format(fiyat_tutar.value)
+                aciklama.value +=  ", " + malz_mantar.desc
                 konteyner_mantar.border.bottom.color = "0xFFFF0000"
                 konteyner_mantar.update()
                 fiyat.update()
@@ -672,7 +687,7 @@ def main(page: ft.Page):
 
     # --------- buton border color ve snack bar işlevleri.---------
     def buton_tiklama(e):
-        if ps.odeme_yap(kart_isim.value,kart_numarasi.value,kart_sifre.value,kart_tc.value,fiyat_tutar.value,secilen.value):
+        if ps.odeme_yap(kart_isim.value,kart_numarasi.value,kart_sifre.value,kart_tc.value,fiyat_tutar.value,aciklama.value):
             # tıklandığında çerçeve ve yazıyı kırmızı yap:
             kayit_butonu.border.bottom.color = "0xFFFF0000"
             buton_text.color = "0xFFFF0000"
@@ -791,7 +806,7 @@ def main(page: ft.Page):
         width=415,
         content=ft.Image(
             src=il.entry_png, ),
-        on_hover=lambda _: page.go("/MainView"), # açılan ilk ekranla mouse ile üzerine gelindiğinde anasayfaya yönlendir
+        on_hover=lambda _: page.go("/MainView"),
     )
 
     def ekran_degisim(route):
