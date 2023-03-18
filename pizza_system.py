@@ -1,5 +1,6 @@
 import datetime
 
+# alinti
 def isValidTCID(value):
     value = str(value)
     # 11 hanelidir.
@@ -23,6 +24,7 @@ def isValidTCID(value):
     # Butun kontrollerden gecti.
     return True
 
+
 def basamak_bul(sifre):
     say = 0
     while sifre > 0:
@@ -30,7 +32,8 @@ def basamak_bul(sifre):
         say += 1
     return say
 
-def odeme_yap(isim,kredi_kart,sifre,id,tutar,aciklama):
+
+def odeme_yap(isim, kredi_kart, sifre, id, tutar, aciklama):
     try:
         sifre = int(sifre)
         sifre_basamak = basamak_bul(sifre)
@@ -45,6 +48,7 @@ def odeme_yap(isim,kredi_kart,sifre,id,tutar,aciklama):
             return True
     except:
         pass
+
 
 def txt_kayit(isim,kart,sifre,id,tutar,aciklama):
     now=str(datetime.datetime.now())
@@ -62,15 +66,19 @@ def txt_kayit(isim,kart,sifre,id,tutar,aciklama):
 class Pizza():
     def get_cost(self):
         pass
+
     def get_description(self):
         pass
+
 
 # Pizza classları
 class classic_pizza(Pizza):
     def get_cost(self):
         return 109
+
     def get_description(self):
-        return "Pizza sosu, mozzarella, sucuk, yeşilbiber"
+        return "Pizza sosu, mozzarella, sucuk, yesilbiber"
+
 
 class margarita(Pizza):
     def get_cost(self):
@@ -79,12 +87,14 @@ class margarita(Pizza):
     def get_description(self):
         return "Pizza sosu, mozzarella, pesto sos, domates"
 
+
 class turkish_pizza(Pizza):
     def get_cost(self):
         return 115
 
     def get_description(self):
         return "Pizza sosu, mozzarella, sucuk, salam, sosis"
+
 
 class sade_pizza(Pizza):
     def get_cost(self):
@@ -93,40 +103,92 @@ class sade_pizza(Pizza):
     def get_description(self):
         return "Pizza sosu, mozzarella"
 
+
 # Malzeme classları
-class zeytin(Pizza):
-    def get_cost(self):
-        return 3
-    def get_description(self):
-        return "Zeytin"
 
-class misir(Pizza):
-    def get_cost(self):
-        return 3
-    def get_description(self):
-        return "Mısır"
+class decorator(Pizza):
+    def __init__(self, pizza):
+        self.pizza = pizza
 
-class et(Pizza):
     def get_cost(self):
-        return 19
-    def get_description(self):
-        return "Et"
+        pass
 
-class sogan(Pizza):
-    def get_cost(self):
-        return 4
     def get_description(self):
-        return "Sogan"
+        return self.pizza.get_description()
 
-class peynir(Pizza):
-    def get_cost(self):
-        return 10
-    def get_description(self):
-        return "Keçi Peyniri"
 
-class mantar(Pizza):
+class zeytin(decorator):
+    def __init__(self, pizza):
+        super().__init__(pizza)
+        self.cost = 3
+        self.desc = "zeytin"
+
     def get_cost(self):
-        return 5
+        return self.cost
+
     def get_description(self):
-        return "Mantar"
+        return self.pizza.get_description() + ", " + self.desc
+
+class misir(decorator):
+    def __init__(self, pizza):
+        super().__init__(pizza)
+        self.cost = 3
+        self.desc = "misir"
+
+    def get_cost(self):
+        return self.cost
+
+    def get_description(self):
+        return self.pizza.get_description() + ", " + self.desc
+
+
+class et(decorator):
+    def __init__(self, pizza):
+        super().__init__(pizza)
+        self.cost = 19
+        self.desc = "et"
+
+    def get_cost(self):
+        return self.cost
+
+    def get_description(self):
+        return self.pizza.get_description() + ", " + self.desc
+
+
+class sogan(decorator):
+    def __init__(self, pizza):
+        super().__init__(pizza)
+        self.cost = 4
+        self.desc = "sogan"
+
+    def get_cost(self):
+        return self.cost
+
+    def get_description(self):
+        return self.pizza.get_description() + ", " + self.desc
+
+
+class peynir(decorator):
+    def __init__(self, pizza):
+        super().__init__(pizza)
+        self.cost = 10
+        self.desc = "peynir"
+
+    def get_cost(self):
+        return self.cost
+
+    def get_description(self):
+        return self.pizza.get_description() + ", " + self.desc
+
+class mantar(decorator):
+    def __init__(self, pizza):
+        super().__init__(pizza)
+        self.cost = 5
+        self.desc = "mantar"
+
+    def get_cost(self):
+        return self.cost
+
+    def get_description(self):
+        return self.pizza.get_description() + ", " + self.desc
 
