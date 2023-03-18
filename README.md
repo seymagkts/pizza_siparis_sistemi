@@ -2,7 +2,7 @@
 # Global AI Hub & Akbank Python Bootcamp Projesi - Pizza Sipariş Sistemi
 
 ### Uygulamanın .exe uzantılı halini indirme linki. Uygulamanın düzgün çalışması için internete bağlı olmak gerekmektedir. Ödeme tamamlandığında bulunduğu konuma orders_database.txt dosyasını otomatik oluşturur.
-https://drive.google.com/file/d/14wsgN2l1mB5dljg4pcRiGSWQMEAz65to/view?usp=share_link
+https://drive.google.com/file/d/1gLvldzsUazzA952rsA1q97KoZzK_8FkW/view?usp=share_link
 
 ### Uygulamanın çalışır haldeki video linki.
 https://drive.google.com/file/d/1wxyZ1mSSqw1Nzpv-SY2LgyIpthpgeMYH/view?usp=share_link
